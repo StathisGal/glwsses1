@@ -4,6 +4,12 @@ fun create_list n [] =
 	if n = 0 then []
 	else (create_list (n div 10) []) @ [n mod 10];
 
+fun list_to_number n lista =
+	if length lista=1 then hd lista
+	else (n + hd lista)*10 + list_to_number n (tl lista);
+
+
+
 
 fun printlist n =
 	if null n then (print("\n"))
@@ -22,6 +28,7 @@ fun find_case n =
 	else if (hd n)-1 = last n then 2
 	else if (hd n)*10 + (item n 1) = (last n)+10 then 3
 	else if (hd n)*10 + (item n 1)-1 = (last n)+10 then 4
+	
 	else 5; 
 (*
 fun find_case n cases =
