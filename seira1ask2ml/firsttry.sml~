@@ -1,0 +1,43 @@
+fun readPoem(filename) =
+    let val file = TextIO.openIn filename
+        val poem = TextIO.inputAll file
+        val _ = TextIO.closeIn file
+    in String.tokens (fn c => c = #"\n" ) poem
+    end;
+
+fun create_list n [] =
+    if n = [] then []
+    else if (tl n = []) then [Option.valOf(Int.fromString (hd n))]
+    else (  [Option.valOf(Int.fromString(hd n))] @ create_list (tl n) [] );
+
+
+fun diairese input =
+    String.tokens ( fn c => c = #" " ) input;
+
+fun diavasma filename =
+    let val kati = readPoem filename in
+    	 create_list (diairese(hd kati) @ diairese(hd (tl kati))) [] 
+    end;
+
+fun last n =
+    if (tl n = []) then (hd n)
+    else last (tl n);
+
+fun create_sum_list eisodos eksodos =
+    if eksodos = [] then create_sum_list (tl eisodos) [hd eisodos]
+    else if (tl eisodos = []) then (eksodos @ [(last eksodos) + hd eisodos])
+    else create_sum_list (tl eisodos) (eksodos @ [(last eksodos) + hd eisodos]);
+
+
+
+
+fun program input =
+    let val lista = (diavasma input) in
+    	let val M = hd lista
+	    val N = hd (tl lista)
+	    val rest = tl(tl lista) in
+	    	create_sum_list rest []
+		end
+	end
+;
+
