@@ -115,7 +115,7 @@ fun anadromiki n =
 	else if per = 7 then ((*printlist n; print("7 ");*) Int.toString(find_par1 (last n)))
 	else if per = 8 then ((*printlist n; print("8 ");*) "5")
 	else if per = 9 then ((*printlist n; print("9 ");*) Int.toString(((hd n)*10+(hd(tl n)))div 2))
-	else (print(Int.toString(per)); "error")
+	else ((*print(Int.toString(per));*) "error")
     end;
 
 fun revsum n = 
